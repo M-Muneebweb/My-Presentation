@@ -567,7 +567,7 @@
     <button class="nav-btn" id="nextBtn" onclick="nextSlide()">Next →</button>
   </div>
 
-  <script src="/_sdk/element_sdk.js"></script>
+  
   <script>
     let currentSlide = 0;
     const totalSlides = 14;
@@ -638,37 +638,7 @@
       });
     });
 
-    // Element SDK Integration
-    async function onConfigChange(config) {
-      const presenterElement = document.getElementById('presenterName');
-      if (presenterElement) {
-        presenterElement.textContent = config.presenter_name || defaultConfig.presenter_name;
-      }
-    }
 
-    function mapToCapabilities(config) {
-      return {
-        recolorables: [],
-        borderables: [],
-        fontEditable: undefined,
-        fontSizeable: undefined
-      };
-    }
-
-    function mapToEditPanelValues(config) {
-      return new Map([
-        ["presenter_name", config.presenter_name || defaultConfig.presenter_name]
-      ]);
-    }
-
-    if (window.elementSdk) {
-      window.elementSdk.init({
-        defaultConfig: defaultConfig,
-        onConfigChange: onConfigChange,
-        mapToCapabilities: mapToCapabilities,
-        mapToEditPanelValues: mapToEditPanelValues
-      });
-    }
 
     // Initialize
     updateSlideDisplay();
