@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
+ <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ethical Issues in AI Tools - Presentation</title>
+  <title>Ethical AI Presentation</title>
   <style>
     * {
       margin: 0;
@@ -12,9 +12,10 @@
     }
 
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       overflow: hidden;
-      background: #0a0e27;
+      background: #0f0f23;
+      box-sizing: border-box;
       height: 100%;
       width: 100%;
     }
@@ -24,11 +25,53 @@
       width: 100%;
     }
 
-    .presentation-container {
+    .app-wrapper {
       width: 100%;
       height: 100%;
       position: relative;
       overflow: hidden;
+    }
+
+    /* Animated background particles */
+    .bg-particles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: rgba(139, 92, 246, 0.6);
+      border-radius: 50%;
+      animation: float-particle 15s infinite ease-in-out;
+    }
+
+    @keyframes float-particle {
+      0%, 100% {
+        transform: translate(0, 0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translate(100px, -100px);
+        opacity: 0;
+      }
+    }
+
+    .slide-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
     }
 
     .slide {
@@ -39,70 +82,110 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      padding: 60px;
+      padding: 80px 60px;
       opacity: 0;
-      transform: translateX(100%);
-      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-      background: linear-gradient(135deg, #0a0e27 0%, #1a1f4d 50%, #0a0e27 100%);
+      visibility: hidden;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
     }
 
     .slide.active {
       opacity: 1;
-      transform: translateX(0);
-      z-index: 10;
+      visibility: visible;
+      animation: slideIn 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .slide.prev {
-      transform: translateX(-100%);
-      opacity: 0;
+    @keyframes slideIn {
+      from {
+        transform: scale(0.95) translateY(20px);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+      }
     }
 
-    /* Slide 1 - Title Slide */
-    .slide-1 {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    /* Title Slide */
+    .title-slide {
+      background: linear-gradient(135deg, #1e1e3f 0%, #2d1b4e 50%, #1e1e3f 100%);
       position: relative;
-      overflow: hidden;
     }
 
-    .slide-1::before {
+    .title-slide::before {
       content: '';
       position: absolute;
-      width: 400px;
-      height: 400px;
-      background: rgba(255, 255, 255, 0.1);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, transparent 70%);
       border-radius: 50%;
-      top: -100px;
-      right: -100px;
-      animation: float 6s ease-in-out infinite;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      animation: pulse-glow 4s ease-in-out infinite;
     }
 
-    .slide-1::after {
-      content: '';
-      position: absolute;
-      width: 300px;
-      height: 300px;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 50%;
-      bottom: -80px;
-      left: -80px;
-      animation: float 8s ease-in-out infinite reverse;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-30px); }
+    @keyframes pulse-glow {
+      0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.5;
+      }
+      50% {
+        transform: translate(-50%, -50%) scale(1.1);
+        opacity: 0.8;
+      }
     }
 
     .title-content {
+      position: relative;
+      z-index: 2;
       text-align: center;
-      z-index: 1;
-      animation: fadeInUp 1s ease-out;
+      max-width: 1000px;
     }
 
-    @keyframes fadeInUp {
+    .emoji-icon {
+      font-size: 6em;
+      margin-bottom: 30px;
+      display: inline-block;
+      animation: bounce-in 1s ease-out;
+    }
+
+    @keyframes bounce-in {
+      0% {
+        transform: scale(0) rotate(-180deg);
+        opacity: 0;
+      }
+      50% {
+        transform: scale(1.1) rotate(10deg);
+      }
+      100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+      }
+    }
+
+    .main-title {
+      font-size: 4.5em;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 25px;
+      line-height: 1.1;
+      letter-spacing: -2px;
+      text-shadow: 0 4px 30px rgba(139, 92, 246, 0.5);
+      animation: fade-up 1s ease-out 0.3s both;
+    }
+
+    .main-subtitle {
+      font-size: 2em;
+      color: #a78bfa;
+      font-weight: 400;
+      margin-bottom: 50px;
+      animation: fade-up 1s ease-out 0.5s both;
+    }
+
+    @keyframes fade-up {
       from {
         opacity: 0;
-        transform: translateY(40px);
+        transform: translateY(30px);
       }
       to {
         opacity: 1;
@@ -110,94 +193,110 @@
       }
     }
 
-    .main-title {
-      font-size: 4em;
-      font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 20px;
-      text-shadow: 2px 4px 20px rgba(0, 0, 0, 0.3);
-      line-height: 1.2;
-    }
-
-    .subtitle {
-      font-size: 1.8em;
-      color: rgba(255, 255, 255, 0.9);
-      margin-bottom: 40px;
-      font-weight: 300;
-    }
-
-    .presenter {
-      font-size: 1.3em;
-      color: rgba(255, 255, 255, 0.8);
-      margin-top: 20px;
-      padding: 15px 40px;
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      border-radius: 50px;
-      backdrop-filter: blur(10px);
+    .presenter-info {
+      display: inline-block;
+      padding: 18px 45px;
+      background: rgba(139, 92, 246, 0.15);
+      border: 2px solid rgba(139, 92, 246, 0.4);
+      border-radius: 60px;
+      color: #e0e7ff;
+      font-size: 1.4em;
+      font-weight: 500;
+      backdrop-filter: blur(20px);
+      animation: fade-up 1s ease-out 0.7s both;
     }
 
     /* Content Slides */
-    .slide-content {
-      max-width: 1100px;
+    .content-slide {
+      background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 100%);
+    }
+
+    .content-wrapper {
+      max-width: 1200px;
       width: 100%;
-      animation: fadeInUp 1s ease-out;
+      position: relative;
+      z-index: 2;
     }
 
     .slide-header {
       text-align: center;
-      margin-bottom: 50px;
+      margin-bottom: 55px;
+    }
+
+    .slide-emoji {
+      font-size: 5em;
+      display: block;
+      margin-bottom: 25px;
+      animation: float-emoji 3s ease-in-out infinite;
+    }
+
+    @keyframes float-emoji {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-15px);
+      }
     }
 
     .slide-title {
-      font-size: 3.2em;
+      font-size: 3.5em;
       font-weight: 700;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 15px;
+      color: #ffffff;
+      margin-bottom: 10px;
+      position: relative;
+      display: inline-block;
+      letter-spacing: -1px;
     }
 
-    .slide-icon {
-      font-size: 4em;
-      margin-bottom: 20px;
-      filter: drop-shadow(0 4px 20px rgba(102, 126, 234, 0.5));
+    .slide-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #8b5cf6, #ec4899);
+      border-radius: 2px;
     }
 
-    .content-box {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 25px;
-      padding: 45px;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    .content-card {
+      background: rgba(30, 30, 63, 0.6);
+      border: 1px solid rgba(139, 92, 246, 0.2);
+      border-radius: 30px;
+      padding: 50px;
+      backdrop-filter: blur(20px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 
+                  inset 0 1px 0 rgba(255, 255, 255, 0.1);
     }
 
-    .bullet-list {
+    .bullet-points {
       list-style: none;
-      color: #e0e0e0;
-      font-size: 1.5em;
-      line-height: 2.2;
+      padding: 0;
     }
 
-    .bullet-list li {
-      margin-bottom: 25px;
-      padding-left: 50px;
+    .bullet-points li {
+      color: #d4d4f7;
+      font-size: 1.6em;
+      line-height: 1.8;
+      margin-bottom: 30px;
+      padding-left: 60px;
       position: relative;
       opacity: 0;
-      animation: slideIn 0.6s ease-out forwards;
+      animation: slide-in-item 0.6s ease-out forwards;
     }
 
-    .bullet-list li:nth-child(1) { animation-delay: 0.2s; }
-    .bullet-list li:nth-child(2) { animation-delay: 0.4s; }
-    .bullet-list li:nth-child(3) { animation-delay: 0.6s; }
-    .bullet-list li:nth-child(4) { animation-delay: 0.8s; }
-    .bullet-list li:nth-child(5) { animation-delay: 1s; }
+    .bullet-points li:nth-child(1) { animation-delay: 0.1s; }
+    .bullet-points li:nth-child(2) { animation-delay: 0.2s; }
+    .bullet-points li:nth-child(3) { animation-delay: 0.3s; }
+    .bullet-points li:nth-child(4) { animation-delay: 0.4s; }
+    .bullet-points li:nth-child(5) { animation-delay: 0.5s; }
 
-    @keyframes slideIn {
+    @keyframes slide-in-item {
       from {
         opacity: 0;
-        transform: translateX(-30px);
+        transform: translateX(-40px);
       }
       to {
         opacity: 1;
@@ -205,443 +304,585 @@
       }
     }
 
-    .bullet-list li::before {
-      content: '◆';
+    .bullet-points li::before {
+      content: '';
       position: absolute;
       left: 15px;
-      color: #667eea;
-      font-size: 1.2em;
+      top: 12px;
+      width: 12px;
+      height: 12px;
+      background: linear-gradient(135deg, #8b5cf6, #ec4899);
+      border-radius: 50%;
+      box-shadow: 0 0 15px rgba(139, 92, 246, 0.6);
     }
 
-    .highlight {
-      color: #f093fb;
-      font-weight: 600;
+    .emphasis {
+      color: #c4b5fd;
+      font-weight: 700;
+      background: linear-gradient(135deg, #8b5cf6, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     /* Thank You Slide */
-    .slide-14 {
-      background: linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #ffd876 100%);
+    .thank-you-slide {
+      background: linear-gradient(135deg, #581c87 0%, #be185d 50%, #ea580c 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .thank-you-slide::before {
+      content: '';
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      top: -150px;
+      right: -150px;
+      animation: rotate-slow 20s linear infinite;
+    }
+
+    .thank-you-slide::after {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 50%;
+      bottom: -100px;
+      left: -100px;
+      animation: rotate-slow 15s linear infinite reverse;
+    }
+
+    @keyframes rotate-slow {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
     }
 
     .thank-you-content {
+      position: relative;
+      z-index: 2;
       text-align: center;
-      z-index: 1;
+    }
+
+    .thank-you-emoji {
+      font-size: 7em;
+      margin-bottom: 30px;
+      display: inline-block;
+      animation: wave 1.5s ease-in-out infinite;
+    }
+
+    @keyframes wave {
+      0%, 100% {
+        transform: rotate(0deg);
+      }
+      25% {
+        transform: rotate(-15deg);
+      }
+      75% {
+        transform: rotate(15deg);
+      }
     }
 
     .thank-you-title {
-      font-size: 5em;
-      font-weight: 700;
+      font-size: 6em;
+      font-weight: 900;
       color: #ffffff;
       margin-bottom: 30px;
-      text-shadow: 2px 4px 20px rgba(0, 0, 0, 0.3);
-      animation: pulse 2s ease-in-out infinite;
+      text-shadow: 0 6px 40px rgba(0, 0, 0, 0.5);
+      animation: scale-in 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
+    @keyframes scale-in {
+      from {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
     }
 
     .qna-text {
-      font-size: 2em;
-      color: rgba(255, 255, 255, 0.9);
-      font-weight: 300;
+      font-size: 2.2em;
+      color: rgba(255, 255, 255, 0.95);
+      font-weight: 400;
+      letter-spacing: 2px;
     }
 
-    /* Navigation */
-    .navigation {
+    /* Navigation Controls */
+    .nav-controls {
       position: fixed;
-      bottom: 40px;
+      bottom: 50px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 20px;
+      gap: 25px;
       z-index: 100;
+      align-items: center;
     }
 
-    .nav-btn {
-      background: rgba(255, 255, 255, 0.1);
-      border: 2px solid rgba(255, 255, 255, 0.3);
+    .nav-button {
+      background: rgba(139, 92, 246, 0.2);
+      border: 2px solid rgba(139, 92, 246, 0.5);
       color: #ffffff;
-      padding: 15px 30px;
+      padding: 16px 35px;
       border-radius: 50px;
       cursor: pointer;
-      font-size: 1.1em;
+      font-size: 1.15em;
       font-weight: 600;
-      backdrop-filter: blur(10px);
-      transition: all 0.3s ease;
+      backdrop-filter: blur(20px);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3);
     }
 
-    .nav-btn:hover {
-      background: rgba(255, 255, 255, 0.2);
-      border-color: rgba(255, 255, 255, 0.5);
+    .nav-button:hover:not(:disabled) {
+      background: rgba(139, 92, 246, 0.4);
+      border-color: rgba(139, 92, 246, 0.8);
       transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 8px 30px rgba(139, 92, 246, 0.5);
     }
 
-    .nav-btn:disabled {
+    .nav-button:active:not(:disabled) {
+      transform: translateY(-1px);
+    }
+
+    .nav-button:disabled {
       opacity: 0.3;
       cursor: not-allowed;
     }
 
-    .slide-counter {
+    .slide-indicator {
       position: fixed;
-      top: 30px;
-      right: 40px;
-      background: rgba(255, 255, 255, 0.1);
+      top: 40px;
+      right: 50px;
+      background: rgba(30, 30, 63, 0.8);
       color: #ffffff;
-      padding: 12px 25px;
+      padding: 14px 30px;
       border-radius: 50px;
-      font-size: 1.1em;
-      font-weight: 600;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      font-size: 1.15em;
+      font-weight: 700;
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
       z-index: 100;
     }
 
-    /* Progress Bar */
-    .progress-bar {
+    .progress-track {
       position: fixed;
       top: 0;
       left: 0;
-      height: 5px;
-      background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-      transition: width 0.3s ease;
+      width: 100%;
+      height: 6px;
+      background: rgba(30, 30, 63, 0.5);
       z-index: 101;
-      box-shadow: 0 2px 10px rgba(102, 126, 234, 0.5);
     }
 
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #8b5cf6, #ec4899, #f59e0b);
+      transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 0 20px rgba(139, 92, 246, 0.8);
+    }
+
+    /* Responsive Design */
     @media (max-width: 768px) {
-      .main-title { font-size: 2.5em; }
-      .subtitle { font-size: 1.3em; }
-      .slide-title { font-size: 2.2em; }
-      .bullet-list { font-size: 1.2em; }
-      .slide { padding: 30px; }
-      .content-box { padding: 30px; }
-      .thank-you-title { font-size: 3.5em; }
+      .slide {
+        padding: 40px 25px;
+      }
+
+      .main-title {
+        font-size: 2.5em;
+      }
+
+      .main-subtitle {
+        font-size: 1.3em;
+      }
+
+      .slide-title {
+        font-size: 2em;
+      }
+
+      .bullet-points li {
+        font-size: 1.2em;
+        padding-left: 45px;
+      }
+
+      .thank-you-title {
+        font-size: 3.5em;
+      }
+
+      .content-card {
+        padding: 30px;
+      }
+
+      .emoji-icon {
+        font-size: 4em;
+      }
+
+      .slide-emoji {
+        font-size: 3.5em;
+      }
     }
   </style>
-</head>
-<body>
-  <div class="progress-bar" id="progressBar"></div>
-  <div class="slide-counter" id="slideCounter">1 / 14</div>
-
-  <div class="presentation-container">
-    <!-- Slide 1: Title Slide -->
-    <div class="slide slide-1 active">
-      <div class="title-content">
-        <div class="slide-icon">🤖</div>
-        <h1 class="main-title">Ethical Issues in Using<br>Popular AI Tools</h1>
-        <p class="subtitle">Responsible & Ethical AI Usage</p>
-        <div class="presenter" id="presenterName">Presenter Name</div>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body>
+  <div class="app-wrapper">
+   <div class="bg-particles" id="particlesContainer"></div>
+   <div class="progress-track">
+    <div class="progress-fill" id="progressFill"></div>
+   </div>
+   <div class="slide-indicator" id="slideIndicator">
+    1 / 14
+   </div>
+   <main class="slide-container"><!-- Slide 1: Title -->
+    <section class="slide title-slide active">
+     <div class="title-content">
+      <div class="emoji-icon">
+       🤖
       </div>
-    </div>
-
-    <!-- Slide 2: Introduction to AI -->
-    <div class="slide slide-2">
-      <div class="slide-content">
-        <div class="slide-header">
-          <div class="slide-icon">🧠</div>
-          <h2 class="slide-title">Introduction to AI</h2>
-        </div>
-        <div class="content-box">
-          <ul class="bullet-list">
-            <li><span class="highlight">Artificial Intelligence (AI)</span> is technology that helps computers think and learn like humans</li>
-            <li>AI tools can answer questions, create content, and solve problems</li>
-            <li><span class="highlight">Popular Examples:</span> ChatGPT, Google Gemini, Microsoft Copilot</li>
-            <li>AI is becoming part of our daily lives</li>
-          </ul>
-        </div>
+      <h1 class="main-title">Ethical Issues in Using Popular AI Tools</h1>
+      <p class="main-subtitle" id="mainSubtitle">Responsible &amp; Ethical AI Usage</p>
+      <div class="presenter-info" id="presenterInfo">
+       Presenter Name
       </div>
-    </div>
-
-    <!-- Slide 3: Why Ethics Matter -->
-    <div class="slide slide-3">
-      <div class="slide-content">
-        <div class="slide-header">
-          <div class="slide-icon">⚖️</div>
-          <h2 class="slide-title">Why Ethics Matter in AI</h2>
-        </div>
-        <div class="content-box">
-          <ul class="bullet-list">
-            <li>AI decisions can <span class="highlight">directly impact human lives</span></li>
-            <li>Understanding the difference between <span class="highlight">right and wrong usage</span></li>
-            <li>Ethics help us use AI responsibly and safely</li>
-            <li>Protecting people from harm caused by AI misuse</li>
-          </ul>
-        </div>
+     </div>
+    </section><!-- Slide 2: Introduction to AI -->
+    <section class="slide content-slide">
+     <div class="content-wrapper">
+      <header class="slide-header"><span class="slide-emoji">🧠</span>
+       <h2 class="slide-title">Introduction to AI</h2>
+      </header>
+      <div class="content-card">
+       <ul class="bullet-points">
+        <li><span class="emphasis">Artificial Intelligence (AI)</span> is technology that helps computers think and learn like humans</li>
+        <li>AI tools can answer questions, create content, and solve problems</li>
+        <li><span class="emphasis">Popular Examples:</span> ChatGPT, Google Gemini, Microsoft Copilot</li>
+        <li>AI is becoming part of our daily lives</li>
+       </ul>
       </div>
-    </div>
-
-    <!-- Slide 4: Privacy Issues -->
-    <div class="slide slide-4">
-      <div class="slide-content">
-        <div class="slide-header">
-          <div class="slide-icon">🔒</div>
-          <h2 class="slide-title">Privacy Issues</h2>
-        </div>
-        <div class="content-box">
-          <ul class="bullet-list">
-            <li>AI tools <span class="highlight">collect our personal data</span> when we use them</li>
-            <li>Your conversations and information may be stored</li>
-            <li><span class="highlight">Risk:</span> Data could be used without your permission</li>
-            <li>Always read privacy policies before sharing sensitive information</li>
-          </ul>
-        </div>
+     </div>
+    </section><!-- Slide 3: Why Ethics Matter -->
+    <section class="slide content-slide">
+     <div class="content-wrapper">
+      <header class="slide-header"><span class="slide-emoji">⚖️</span>
+       <h2 class="slide-title">Why Ethics Matter in AI</h2>
+      </header>
+      <div class="content-card">
+       <ul class="bullet-points">
+        <li>AI decisions can <span class="emphasis">directly impact human lives</span></li>
+        <li>Understanding the difference between <span class="emphasis">right and wrong usage</span></li>
+        <li>Ethics help us use AI responsibly and safely</li>
+        <li>Protecting people from harm caused by AI misuse</li>
+       </ul>
       </div>
-    </div>
-
-    <!-- Slide 5: Data Security -->
-    <div class="slide slide-5">
-      <div class="slide-content">
-        <div class="slide-header">
-          <div class="slide-icon">🛡️</div>
-          <h2 class="slide-title">Data Security</h2>
-        </div>
-        <div class="content-box">
-          <ul class="bullet-list">
-            <li><span class="highlight">Hacking risks</span> - Cybercriminals can steal AI data</li>
-            <li>Sensitive information needs strong protection</li>
-            <li>Importance of <span class="highlight">secure storage and encryption</span></li>
-            <li>Never share passwords or bank details with AI tools</li>
-          </ul>
-        </div>
+     </div>
+    </section><!-- Slide 4: Privacy Issues -->
+    <section class="slide content-slide">
+     <div class="content-wrapper">
+      <header class="slide-header"><span class="slide-emoji">🔒</span>
+       <h2 class="slide-title">Privacy Issues</h2>
+      </header>
+      <div class="content-card">
+       <ul class="bullet-points">
+        <li>AI tools <span class="emphasis">collect our personal data</span> when we use them</li>
+        <li>Your conversations and information may be stored</li>
+        <li><span class="emphasis">Risk:</span> Data could be used without your permission</li>
+        <li>Always read privacy policies before sharing sensitive information</li>
+       </ul>
       </div>
-    </div>
-
-    <!-- Slide 6: Bias & Discrimination -->
-    <div class="slide slide-6">
-      <div class="slide-content">
-        <div class="slide-header">
-          <div class="slide-icon">⚠️</div>
-          <h2 class="slide-title">Bias & Discrimination</h2>
-        </div>
-        <div class="content-box">
-          <ul class="bullet-list">
-            <li>AI learns from <span class="highlight">biased training data</span> from the internet</li>
-            <li>Can lead to unfair decisions based on race, gender, or background</li>
-            <li><span class="highlight">Example:</span> Biased hiring algorithms or loan approvals</li>
-            <li>We must recognize and challenge AI bias</li>
-          </ul>
-        </div>
+     </div>
+    </section><!-- Slide 5: Data Security -->
+    <section class="slide content-slide">
+     <div class="content-wrapper">
+      <header class="slide-header"><span class="slide-emoji">🛡️</span>
+       <h2 class="slide-title">Data Security</h2>
+      </header>
+      <div class="content-card">
+       <ul class="bullet-points">
+        <li><span class="emphasis">Hacking risks</span> - Cybercriminals can steal AI data</li>
+        <li>Sensitive information needs strong protection</li>
+        <li>Importance of <span class="emphasis">secure storage and encryption</span></li>
+        <li>Never share passwords or bank details with AI tools</li>
+       </ul>
       </div>
-    </div>
-
-    <!-- Slide 7: Job Replacement Fear -->
-    <div class="slide slide-7">
-      <div class="slide-content">
-        <div class="slide-header">
-          <div class="slide-icon">💼</div>
-          <h2 class="slide-title">Job Replacement Fear</h2>
-        </div>
-        <div class="content-box">
-          <ul class="bullet-list">
-            <li>AI is <span class="highlight">replacing some human jobs</span> (automation)</li>
-            <li>Workers fear losing their livelihoods</li>
-            <li>Need for <span class="highlight">ethical balance</span> between efficiency and employment</li>
-            <li>Focus on reskilling and AI-human collaboration</li>
-          </ul>
-        </div>
+     </div>
+    </section><!-- Slide 6: Bias & Discrimination -->
+    <section class="slide content-slide">
+     <div class="content-wrapper">
+      <header class="slide-header"><span class="slide-emoji">⚠️</span>
+       <h2 class="slide-title">Bias &amp; Discrimination</h2>
+      </header>
+      <div class="content-card">
+       <ul class="bullet-points">
+        <li>AI learns from <span class="emphasis">biased training data</span> from the internet</li>
+        <li>Can lead to unfair decisions based on race, gender, or background</li>
+        <li><span class="emphasis">Example:</span> Biased hiring algorithms or loan approvals</li>
+        <li>We must recognize and challenge AI bias</li>
+       </ul>
       </div>
-    </div>
-
-    <!-- Slide 8: Misinformation & Deepfakes -->
-    <div class="slide slide-8">
-      <div class="slide-content">
-        <div class="slide-header">
-          <div class="slide-icon">📰</div>
-          <h2 class="slide-title">Misinformation & Deepfakes</h2>
-        </div>
-        <div class="content-box">
-          <ul class="bullet-list">
-            <li>AI can create <span class="highlight">fake news and false information</span></li>
-            <li><span class="highlight">Deepfakes:</span> Realistic fake videos or images</li>
-            <li>Can damage reputations and spread lies</li>
-            <li>Serious impact on society, politics, and trust</li>
-          </ul>
-        </div>
+     </div>
+    </section><!-- Slide 7: Job Replacement Fear -->
+    <section class="slide content-slide">
+     <div class="content-wrapper">
+      <header class="slide-header"><span class="slide-emoji">💼</span>
+       <h2 class="slide-title">Job Replacement Fear</h2>
+      </header>
+      <div class="content-card">
+       <ul class="bullet-points">
+        <li>AI is <span class="emphasis">replacing some human jobs</span> (automation)</li>
+        <li>Workers fear losing their livelihoods</li>
+        <li>Need for <span class="emphasis">ethical balance</span> between efficiency and employment</li>
+        <li>Focus on reskilling and AI-human collaboration</li>
+       </ul>
       </div>
-    </div>
-
-    <!-- Slide 9: Copyright & Plagiarism -->
-    <div class="slide slide-9">
-      <div class="slide-content">
-        <div class="slide-header">
-          <div class="slide-icon">©️</div>
-          <h2 class="slide-title">Copyright & Plagiarism</h2>
-        </div>
-        <div class="content-box">
-          <ul class="bullet-list">
-            <li><span class="highlight">Who owns AI-generated content?</span></li>
-            <li>Students copying AI answers without understanding</li>
-            <li>Using AI to write entire assignments is <span class="highlight">academic dishonesty</span></li>
-            <li>AI should assist learning, not replace it</li>
-          </ul>
-        </div>
+     </div>
+    </section><!-- Slide 8: Misinformation & Deepfakes -->
+    <section class="slide content-slide">
+     <div class="content-wrapper">
+      <header class="slide-header"><span class="slide-emoji">📰</span>
+       <h2 class="slide-title">Misinformation &amp; Deepfakes</h2>
+      </header>
+      <div class="content-card">
+       <ul class="bullet-points">
+        <li>AI can create <span class="emphasis">fake news and false information</span></li>
+        <li><span class="emphasis">Deepfakes:</span> Realistic fake videos or images</li>
+        <li>Can damage reputations and spread lies</li>
+        <li>Serious impact on society, politics, and trust</li>
+       </ul>
       </div>
-    </div>
-
-    <!-- Slide 10: Over Dependence on AI -->
-    <div class="slide slide-10">
-      <div class="slide-content">
-        <div class="slide-header">
-          <div class="slide-icon">🧩</div>
-          <h2 class="slide-title">Over Dependence on AI</h2>
-        </div>
-        <div class="content-box">
-          <ul class="bullet-list">
-            <li><span class="highlight">Loss of critical thinking skills</span></li>
-            <li>Students relying on AI instead of learning</li>
-            <li>Reduced problem-solving and creativity</li>
-            <li>Balance is key: <span class="highlight">Use AI as a tool, not a replacement</span></li>
-          </ul>
-        </div>
+     </div>
+    </section><!-- Slide 9: Copyright & Plagiarism -->
+    <section class="slide content-slide">
+     <div class="content-wrapper">
+      <header class="slide-header"><span class="slide-emoji">©️</span>
+       <h2 class="slide-title">Copyright &amp; Plagiarism</h2>
+      </header>
+      <div class="content-card">
+       <ul class="bullet-points">
+        <li><span class="emphasis">Who owns AI-generated content?</span></li>
+        <li>Students copying AI answers without understanding</li>
+        <li>Using AI to write entire assignments is <span class="emphasis">academic dishonesty</span></li>
+        <li>AI should assist learning, not replace it</li>
+       </ul>
       </div>
-    </div>
-
-    <!-- Slide 11: Ethical AI Usage -->
-    <div class="slide slide-11">
-      <div class="slide-content">
-        <div class="slide-header">
-          <div class="slide-icon">✅</div>
-          <h2 class="slide-title">Ethical AI Usage</h2>
-        </div>
-        <div class="content-box">
-          <ul class="bullet-list">
-            <li>Use AI <span class="highlight">responsibly and transparently</span></li>
-            <li>Always verify AI-generated information</li>
-            <li><span class="highlight">Human + AI collaboration</span> works best</li>
-            <li>Give credit where it's due and learn actively</li>
-          </ul>
-        </div>
+     </div>
+    </section><!-- Slide 10: Over Dependence on AI -->
+    <section class="slide content-slide">
+     <div class="content-wrapper">
+      <header class="slide-header"><span class="slide-emoji">🧩</span>
+       <h2 class="slide-title">Over Dependence on AI</h2>
+      </header>
+      <div class="content-card">
+       <ul class="bullet-points">
+        <li><span class="emphasis">Loss of critical thinking skills</span></li>
+        <li>Students relying on AI instead of learning</li>
+        <li>Reduced problem-solving and creativity</li>
+        <li>Balance is key: <span class="emphasis">Use AI as a tool, not a replacement</span></li>
+       </ul>
       </div>
-    </div>
-
-    <!-- Slide 12: Future of Ethical AI -->
-    <div class="slide slide-12">
-      <div class="slide-content">
-        <div class="slide-header">
-          <div class="slide-icon">🚀</div>
-          <h2 class="slide-title">Future of Ethical AI</h2>
-        </div>
-        <div class="content-box">
-          <ul class="bullet-list">
-            <li>Governments creating <span class="highlight">AI regulations and guidelines</span></li>
-            <li>Focus on human-centered AI development</li>
-            <li>Building AI that respects human values and rights</li>
-            <li>The future needs <span class="highlight">ethical AI leaders</span> - that's you!</li>
-          </ul>
-        </div>
+     </div>
+    </section><!-- Slide 11: Ethical AI Usage -->
+    <section class="slide content-slide">
+     <div class="content-wrapper">
+      <header class="slide-header"><span class="slide-emoji">✅</span>
+       <h2 class="slide-title">Ethical AI Usage</h2>
+      </header>
+      <div class="content-card">
+       <ul class="bullet-points">
+        <li>Use AI <span class="emphasis">responsibly and transparently</span></li>
+        <li>Always verify AI-generated information</li>
+        <li><span class="emphasis">Human + AI collaboration</span> works best</li>
+        <li>Give credit where it's due and learn actively</li>
+       </ul>
       </div>
-    </div>
-
-    <!-- Slide 13: Conclusion -->
-    <div class="slide slide-13">
-      <div class="slide-content">
-        <div class="slide-header">
-          <div class="slide-icon">💡</div>
-          <h2 class="slide-title">Conclusion</h2>
-        </div>
-        <div class="content-box">
-          <ul class="bullet-list">
-            <li>AI is a <span class="highlight">powerful technology</span> with amazing potential</li>
-            <li>But power comes with responsibility</li>
-            <li><span class="highlight">Ethics are necessary</span> to protect people and society</li>
-            <li>Let's use AI to make the world better, not worse</li>
-          </ul>
-        </div>
+     </div>
+    </section><!-- Slide 12: Future of Ethical AI -->
+    <section class="slide content-slide">
+     <div class="content-wrapper">
+      <header class="slide-header"><span class="slide-emoji">🚀</span>
+       <h2 class="slide-title">Future of Ethical AI</h2>
+      </header>
+      <div class="content-card">
+       <ul class="bullet-points">
+        <li>Governments creating <span class="emphasis">AI regulations and guidelines</span></li>
+        <li>Focus on human-centered AI development</li>
+        <li>Building AI that respects human values and rights</li>
+        <li>The future needs <span class="emphasis">ethical AI leaders</span> - that's you!</li>
+       </ul>
       </div>
-    </div>
-
-    <!-- Slide 14: Thank You -->
-    <div class="slide slide-14">
-      <div class="thank-you-content">
-        <div class="thank-you-title">Thank You! 🙏</div>
-        <p class="qna-text">Questions & Answers</p>
+     </div>
+    </section><!-- Slide 13: Conclusion -->
+    <section class="slide content-slide">
+     <div class="content-wrapper">
+      <header class="slide-header"><span class="slide-emoji">💡</span>
+       <h2 class="slide-title">Conclusion</h2>
+      </header>
+      <div class="content-card">
+       <ul class="bullet-points">
+        <li>AI is a <span class="emphasis">powerful technology</span> with amazing potential</li>
+        <li>But power comes with responsibility</li>
+        <li><span class="emphasis">Ethics are necessary</span> to protect people and society</li>
+        <li>Let's use AI to make the world better, not worse</li>
+       </ul>
       </div>
-    </div>
+     </div>
+    </section><!-- Slide 14: Thank You -->
+    <section class="slide thank-you-slide">
+     <div class="thank-you-content">
+      <div class="thank-you-emoji">
+       🙏
+      </div>
+      <h2 class="thank-you-title">Thank You!</h2>
+      <p class="qna-text">Questions &amp; Answers</p>
+     </div>
+    </section>
+   </main>
+   <nav class="nav-controls"><button class="nav-button" id="prevButton" aria-label="Previous slide">← Previous</button> <button class="nav-button" id="nextButton" aria-label="Next slide">Next →</button>
+   </nav>
   </div>
-
-  <div class="navigation">
-    <button class="nav-btn" id="prevBtn" onclick="previousSlide()">← Previous</button>
-    <button class="nav-btn" id="nextBtn" onclick="nextSlide()">Next →</button>
-  </div>
-
-  
+  <script src="/_sdk/element_sdk.js"></script>
   <script>
-    let currentSlide = 0;
+    // Presentation State
+    let currentSlideIndex = 0;
     const totalSlides = 14;
     const slides = document.querySelectorAll('.slide');
+    const prevButton = document.getElementById('prevButton');
+    const nextButton = document.getElementById('nextButton');
+    const slideIndicator = document.getElementById('slideIndicator');
+    const progressFill = document.getElementById('progressFill');
 
-    const defaultConfig = {
-      presenter_name: "Presenter Name"
-    };
+    // Create animated particles
+    function createParticles() {
+      const container = document.getElementById('particlesContainer');
+      for (let i = 0; i < 30; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 15 + 's';
+        particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+        container.appendChild(particle);
+      }
+    }
 
+    // Update slide display
     function updateSlideDisplay() {
       slides.forEach((slide, index) => {
-        slide.classList.remove('active', 'prev');
-        if (index === currentSlide) {
-          slide.classList.add('active');
-        } else if (index < currentSlide) {
-          slide.classList.add('prev');
-        }
+        slide.classList.toggle('active', index === currentSlideIndex);
       });
 
-      // Update counter
-      document.getElementById('slideCounter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+      // Update controls
+      slideIndicator.textContent = `${currentSlideIndex + 1} / ${totalSlides}`;
+      prevButton.disabled = currentSlideIndex === 0;
+      nextButton.disabled = currentSlideIndex === totalSlides - 1;
 
-      // Update progress bar
-      const progress = ((currentSlide + 1) / totalSlides) * 100;
-      document.getElementById('progressBar').style.width = progress + '%';
-
-      // Update button states
-      document.getElementById('prevBtn').disabled = currentSlide === 0;
-      document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+      // Update progress
+      const progress = ((currentSlideIndex + 1) / totalSlides) * 100;
+      progressFill.style.width = progress + '%';
     }
 
-    function nextSlide() {
-      if (currentSlide < totalSlides - 1) {
-        currentSlide++;
+    // Navigation functions
+    function goToNextSlide() {
+      if (currentSlideIndex < totalSlides - 1) {
+        currentSlideIndex++;
         updateSlideDisplay();
       }
     }
 
-    function previousSlide() {
-      if (currentSlide > 0) {
-        currentSlide--;
+    function goToPreviousSlide() {
+      if (currentSlideIndex > 0) {
+        currentSlideIndex--;
         updateSlideDisplay();
       }
     }
+
+    // Event listeners
+    prevButton.addEventListener('click', goToPreviousSlide);
+    nextButton.addEventListener('click', goToNextSlide);
 
     // Keyboard navigation
     document.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowRight' || e.key === ' ') {
         e.preventDefault();
-        nextSlide();
+        goToNextSlide();
       } else if (e.key === 'ArrowLeft') {
         e.preventDefault();
-        previousSlide();
+        goToPreviousSlide();
       }
     });
 
     // Click navigation on slides
-    document.querySelectorAll('.slide').forEach(slide => {
+    slides.forEach(slide => {
       slide.addEventListener('click', (e) => {
-        if (e.target.closest('.nav-btn')) return;
+        if (e.target.closest('.nav-button')) return;
         const rect = slide.getBoundingClientRect();
         const clickX = e.clientX - rect.left;
         if (clickX > rect.width / 2) {
-          nextSlide();
+          goToNextSlide();
         } else {
-          previousSlide();
+          goToPreviousSlide();
         }
       });
     });
 
+    // Element SDK Configuration
+    const defaultConfig = {
+      presenter_name: "Presenter Name",
+      main_subtitle: "Responsible & Ethical AI Usage"
+    };
 
+    async function onConfigChange(config) {
+      const presenterElement = document.getElementById('presenterInfo');
+      const subtitleElement = document.getElementById('mainSubtitle');
+      
+      if (presenterElement) {
+        presenterElement.textContent = config.presenter_name || defaultConfig.presenter_name;
+      }
+      
+      if (subtitleElement) {
+        subtitleElement.textContent = config.main_subtitle || defaultConfig.main_subtitle;
+      }
+    }
+
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [],
+        borderables: [],
+        fontEditable: undefined,
+        fontSizeable: undefined
+      };
+    }
+
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ["presenter_name", config.presenter_name || defaultConfig.presenter_name],
+        ["main_subtitle", config.main_subtitle || defaultConfig.main_subtitle]
+      ]);
+    }
 
     // Initialize
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig: defaultConfig,
+        onConfigChange: onConfigChange,
+        mapToCapabilities: mapToCapabilities,
+        mapToEditPanelValues: mapToEditPanelValues
+      });
+    }
+
+    createParticles();
     updateSlideDisplay();
   </script>
-</body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9af43942b59a90a4',t:'MTc2NTk1MTQ3My4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
